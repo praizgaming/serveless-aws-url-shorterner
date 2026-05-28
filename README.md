@@ -1,6 +1,7 @@
 # Serverless URL Shortener – AWS Lambda + API Gateway + DynamoDB
 
 ## Project Overview
+
 A fully serverless URL shortener service (like bit.ly) built on AWS. No EC2 instances to manage — everything runs on Lambda, API Gateway, and DynamoDB. Costs pennies per month and scales automatically.
 
 **Why serverless:**
@@ -10,6 +11,7 @@ A fully serverless URL shortener service (like bit.ly) built on AWS. No EC2 inst
 - Perfect for cloud portfolio projects
 
 ## Tech Stack (100% Serverless)
+
 | Service | Purpose |
 |---------|---------|
 | AWS Lambda (Python) | Business logic (create short URL, redirect) |
@@ -19,10 +21,12 @@ A fully serverless URL shortener service (like bit.ly) built on AWS. No EC2 inst
 | IAM | Permissions between services |
 
 ## Architecture Diagram
+
 > 📸 **[Screenshot 1: Serverless architecture diagram here]**
 > *Shows: User → API Gateway → Lambda → DynamoDB flow, plus redirect flow.*
 
 ## How It Works
+
 1. User submits a long URL via POST request
 2. Lambda generates a short code (e.g., "abc123")
 3. DynamoDB stores `{shortCode: "abc123", longUrl: "https://example.com/..."}`
@@ -30,12 +34,14 @@ A fully serverless URL shortener service (like bit.ly) built on AWS. No EC2 inst
 5. Lambda looks up code and returns 302 redirect to original URL
 
 ## API Endpoints
+
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | POST | `/shorten` | Create short URL (body: {"url": "https://..."}) |
 | GET | `/{shortCode}` | Redirect to original URL |
 
 ## Deployment (Terraform)
+
 I provisioned this entire stack using **Terraform** (Infrastructure as Code):
 
 ```hcl
